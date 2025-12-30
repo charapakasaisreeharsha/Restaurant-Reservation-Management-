@@ -126,11 +126,11 @@ The application supports **role-based authentication**, **slot-based table booki
 
 🌐 API Endpoints
 🔐 Authentication
-
+---
 POST /api/auth/register
 
 POST /api/auth/login
----
+
 👤 Customer
 
 POST /api/reservations
@@ -140,17 +140,17 @@ GET /api/reservations/my
 DELETE /api/reservations/:id
 
 GET /api/reservations/booked-slots?date=YYYY-MM-DD
----
-🛠️ Admin
 
+🛠️ Admin
+---
 GET /api/admin/reservations
 
 GET /api/admin/tables
 
 POST /api/admin/tables
----
-🧪 Validation & Error Handling
 
+🧪 Validation & Error Handling
+---
 Prevents:
 
 ❌ Duplicate slot bookings
@@ -166,9 +166,9 @@ Uses proper HTTP status codes:
 401 – Unauthorized
 
 403 – Forbidden
----
-🖥️ UI Features
 
+🖥️ UI Features
+---
 Single-page booking experience
 
 Smooth date & slot selection
@@ -178,9 +178,9 @@ Dynamic slot disabling
 Responsive layout (desktop & mobile)
 
 Clean admin dashboard with summary cards
----
-📌 Assumptions
 
+📌 Assumptions
+---
 Single restaurant system
 
 Fixed predefined time slots
@@ -190,9 +190,9 @@ No payment gateway integration
 Admin accounts are pre-created
 
 Past reservations are retained for history
----
-⚠️ Limitations
 
+⚠️ Limitations
+---
 No automatic time-based cleanup
 
 No table deletion feature
@@ -210,8 +210,9 @@ No notification system (SMS / Email)
 🏢 Multi-restaurant support
 
 📅 Calendar-based booking UI
----
+
 ▶️ Local Setup Instructions
+---
 Backend
 cd backend
 npm install
@@ -228,9 +229,9 @@ Frontend
 cd frontend
 npm install
 npm start
----
-✅ Submission Checklist
 
+✅ Submission Checklist
+---
 ✔ Role-based authentication
 
 ✔ Slot-based reservation logic
@@ -242,7 +243,7 @@ npm start
 ✔ Deployed frontend & backend
 
 ✔ README documentation
----
-👨‍💻 Author
 
+👨‍💻 Author
+---
 Sai Sree Harsha Charapaka :)
