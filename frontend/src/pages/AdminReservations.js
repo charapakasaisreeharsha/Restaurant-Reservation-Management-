@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import API from "../services/api";
 import "../styles/BookingSystem.css";
 
 export default function AdminReservations() {
+  const navigate = useNavigate();
   const [reservations, setReservations] = useState([]);
   const [tables, setTables] = useState([]);
 
   const [tableNumber, setTableNumber] = useState("");
   const [capacity, setCapacity] = useState("");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     fetchData();
@@ -45,9 +48,24 @@ export default function AdminReservations() {
     t => !bookedTableIds.has(t._id)
   );
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    window.location.href = "/login";
+  };
+
   return (
     <>
-      <div className="top-nav">Admin Dashboard</div>
+      <div className="top-nav">
+        Admin Dashboard
+        <div className="hamburger" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div className={`menu ${isMenuOpen ? 'open' : ''}`}>
+          <button className="logout-btn" onClick={handleLogout}>Logout</button>
+        </div>
+      </div>
 
       <div className="booking-container">
         {/* SUMMARY CARDS */}

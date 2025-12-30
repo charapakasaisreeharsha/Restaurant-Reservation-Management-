@@ -48,3 +48,12 @@ exports.login = async (req, res) => {
     res.status(500).json({ message: "Login failed" });
   }
 };
+
+exports.verify = async (req, res) => {
+  try {
+    // The auth middleware already verifies the token and sets req.user
+    res.json({ valid: true, role: req.user.role });
+  } catch (err) {
+    res.status(401).json({ valid: false, message: "Invalid token" });
+  }
+};

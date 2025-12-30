@@ -14,18 +14,44 @@ export default function Register() {
   };
 
   return (
-    <div>
-      <h2>Register</h2>
-      <input placeholder="Name" onChange={e => setName(e.target.value)} />
-      <input placeholder="Email" onChange={e => setEmail(e.target.value)} />
-      <input placeholder="Password" type="password"
-        onChange={e => setPassword(e.target.value)} />
-      <select value={role} onChange={e => setRole(e.target.value)}>
-        <option value="USER">User</option>
-        <option value="ADMIN">Admin</option>
-      </select>
-      <button onClick={register}>Register</button>
-      <p>Already have an account? <Link to="/login">Login</Link></p>
+    <div className="page-container">
+      <div className="form-container">
+        <h2>Register</h2>
+        <div className="input-group">
+          <input
+            type="text"
+            placeholder="Name"
+            value={name}
+            onChange={e => setName(e.target.value)}
+          />
+        </div>
+        <div className="input-group">
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+          />
+        </div>
+        <div className="input-group">
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+          />
+        </div>
+        <div className="input-group">
+          <select value={role} onChange={e => setRole(e.target.value)}>
+            <option value="USER">User</option>
+            <option value="ADMIN">Admin</option>
+          </select>
+        </div>
+        <button className="btn-primary" onClick={register}>Register</button>
+        <div className="link-text">
+          Already have an account? <Link to="/login">Login</Link>
+        </div>
+      </div>
     </div>
   );
 }

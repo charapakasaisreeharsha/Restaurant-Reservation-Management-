@@ -15,9 +15,56 @@ body {
   border-bottom: 1px solid #e5e7eb;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 0 20px;
   font-size: 18px;
   font-weight: 500;
+  position: relative;
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  width: 24px;
+  height: 18px;
+  justify-content: space-between;
+}
+
+.hamburger span {
+  width: 100%;
+  height: 2px;
+  background: #111827;
+  transition: 0.3s;
+}
+
+.menu {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  display: none;
+}
+
+.menu.open {
+  display: block;
+}
+
+.logout-btn {
+  background: none;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  color: #dc2626;
+  font-size: 14px;
+}
+
+.logout-btn:hover {
+  background: #fef2f2;
 }
 
 /* --------------------
@@ -166,6 +213,131 @@ body {
   }
 }
 
+/* --------------------
+   INPUT STYLES
+-------------------- */
+
+.input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 16px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #ff7a00;
+  box-shadow: 0 0 0 3px rgba(255, 122, 0, 0.1);
+}
+
+.textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 16px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  resize: vertical;
+  min-height: 80px;
+  transition: border-color 0.2s;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: #ff7a00;
+  box-shadow: 0 0 0 3px rgba(255, 122, 0, 0.1);
+}
+
+.slot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.note {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 16px 0;
+  text-align: center;
+}
+
+.form-section {
+  margin-top: 24px;
+  padding: 20px;
+  background: #f9fafb;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+}
+
+.form-section h4 {
+  margin: 0 0 16px 0;
+  font-size: 18px;
+}
+
+.guest-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.guest-stepper button {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #e5e7eb;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.guest-stepper button:hover {
+  background: #f3f4f6;
+}
+
+.guest-stepper span {
+  font-size: 18px;
+  font-weight: 500;
+  min-width: 40px;
+  text-align: center;
+}
+
+.success-card {
+  margin-top: 24px;
+  padding: 20px;
+  background: #ecfdf3;
+  border: 1px solid #d1fae5;
+  border-radius: 16px;
+  text-align: center;
+}
+
+.success-card h4 {
+  margin: 0 0 16px 0;
+  color: #16a34a;
+}
+
+.success-card p {
+  margin: 8px 0;
+  color: #111827;
+}
+
+.success-card small {
+  color: #6b7280;
+  display: block;
+  margin-bottom: 16px;
+}
+
 
 /* ADMIN SUMMARY */
 .admin-summary {
@@ -194,4 +366,62 @@ body {
   margin: 8px 0 0;
   font-size: 28px;
   font-weight: 600;
+}
+
+/* RESERVATIONS LIST */
+.reservation-item {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.reservation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.reservation-header strong {
+  font-size: 16px;
+  color: #111827;
+}
+
+.cancel-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  color: #dc2626;
+  font-size: 16px;
+  transition: background-color 0.2s;
+}
+
+.cancel-btn:hover {
+  background-color: #fef2f2;
+}
+
+.reservation-item div {
+  margin-bottom: 6px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.reservation-item div:last-child {
+  margin-bottom: 0;
+}
+
+.badge-cancelled {
+  display: inline-block;
+  padding: 4px 8px;
+  background-color: #fef2f2;
+  color: #dc2626;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 8px;
 }

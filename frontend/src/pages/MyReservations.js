@@ -1,8 +1,10 @@
 import { useEffect, useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import API from "../services/api";
 import "../styles/BookingSystem.css";
 
 export default function MyReservations() {
+  const navigate = useNavigate();
   const [reservations, setReservations] = useState([]);
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedSlot, setSelectedSlot] = useState("");
@@ -15,6 +17,7 @@ export default function MyReservations() {
 
   const [confirmed, setConfirmed] = useState(null);
   const formRef = useRef(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     API.get("/reservations/my").then(res => setReservations(res.data));
@@ -65,10 +68,25 @@ export default function MyReservations() {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
+
   return (
     <>
       {/* TOP NAV */}
-      <div className="top-nav">Booking System</div>
+      <div className="top-nav">
+        Booking System
+        <div className="hamburger" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div className={`menu ${isMenuOpen ? 'open' : ''}`}>
+          <button className="logout-btn" onClick={handleLogout}>Logout</button>
+        </div>
+      </div>
 
       <div className="booking-container">
         {/* LEFT COLUMN */}
