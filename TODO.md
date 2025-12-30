@@ -1,4 +1,0 @@
-- [x] Edit Login.js: Import useNavigate and useEffect, add useEffect to redirect if token exists, change login redirect to navigate with replace: true
-- [ ] Edit MyReservations.js: Change logout to window.location.href = '/login'
-- [ ] Edit AdminReservations.js: Change logout to window.location.href = '/login'
-- [ ] Test navigation behavior: login, logout, browser back/forward
