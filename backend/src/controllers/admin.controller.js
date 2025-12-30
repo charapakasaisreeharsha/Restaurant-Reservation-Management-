@@ -18,7 +18,8 @@ exports.seedTables = async (req, res) => {
 exports.getAllReservations = async (req, res) => {
   const reservations = await Reservation.find()
     .populate("userId", "name email")
-    .populate("tableId", "tableNumber capacity");
+    .populate("tableId", "tableNumber capacity")
+    .sort({ createdAt: -1 }); // Sort by newest first
 
   res.json(reservations);
 };

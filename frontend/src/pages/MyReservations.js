@@ -17,6 +17,7 @@ export default function MyReservations() {
 
   const [confirmed, setConfirmed] = useState(null);
   const formRef = useRef(null);
+  const reservationsListRef = useRef(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -33,7 +34,7 @@ export default function MyReservations() {
 
   const dates = [...Array(7)].map((_, i) => {
     const d = new Date();
-    d.setDate(d.getDate() + i);
+    d.setDate(d.getDate() + i + 1); // Start from tomorrow, always show next 7 days
     return d.toISOString().split("T")[0];
   });
 
@@ -41,6 +42,11 @@ export default function MyReservations() {
     "18:00-18:30","18:30-19:00","19:00-19:30",
     "19:30-20:00","20:00-20:30","20:30-21:00"
   ];
+
+  // All slots are available for future dates
+  const getAvailableSlots = () => {
+    return slots;
+  };
 
   const bookTable = async () => {
     if (!mobileNumber.trim()) {
@@ -99,13 +105,13 @@ export default function MyReservations() {
 
             <div className="action-row">
               <button className="secondary-btn">Get Directions</button>
-              <button className="primary-btn">Book a Table</button>
+              <button className="primary-btn">Reviews</button>
             </div>
           </div>
 
           <h3 className="section-title">Your Upcoming Reservations</h3>
 
-          <div className="upcoming-card">
+          <div className="reservations-list" ref={reservationsListRef}>
             {reservations.length === 0 && (
               <p className="muted">No upcoming reservations</p>
             )}
@@ -170,7 +176,7 @@ export default function MyReservations() {
           {selectedDate && (
             <>
               <div className="slot-grid">
-                {slots.map(s => {
+                {getAvailableSlots().map(s => {
                   const isBooked = bookedSlots.some(slot => slot.timeSlot === s);
                   return (
                     <button

@@ -1,12 +1,11 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState, useRef } from "react";
 import API from "../services/api";
 import "../styles/BookingSystem.css";
 
 export default function AdminReservations() {
-  const navigate = useNavigate();
   const [reservations, setReservations] = useState([]);
   const [tables, setTables] = useState([]);
+  const reservationsListRef = useRef(null);
 
   const [tableNumber, setTableNumber] = useState("");
   const [capacity, setCapacity] = useState("");
@@ -22,6 +21,11 @@ export default function AdminReservations() {
 
     setReservations(resv.data);
     setTables(tbls.data);
+
+    // Scroll to top to show newest reservations
+    if (reservationsListRef.current) {
+      reservationsListRef.current.scrollTop = 0;
+    }
   };
 
   const addTable = async () => {
@@ -113,40 +117,42 @@ export default function AdminReservations() {
         <div className="left-section">
           <h3 className="section-title">All Reservations</h3>
 
-          {reservations.map(r => (
-            <div key={r._id} className="reservation-item">
-              <div className="reservation-header">
-                <strong>{r.userId.email}</strong>
-                {r.status !== 'cancelled' && (
-                  <button
-                    className="cancel-btn"
-                    onClick={() => {
-                      if (window.confirm('Are you sure you want to cancel this reservation?')) {
-                        API.put(`/admin/reservations/${r._id}/cancel`)
-                          .then(() => {
-                            setReservations(prev => prev.map(res =>
-                              res._id === r._id ? { ...res, status: 'cancelled' } : res
-                            ));
-                          })
-                          .catch(error => {
-                            alert(error.response?.data?.message || "Failed to cancel reservation");
-                          });
-                      }
-                    }}
-                  >
-                    🗑️
-                  </button>
+          <div className="reservations-list" ref={reservationsListRef}>
+            {reservations.map(r => (
+              <div key={r._id} className="reservation-item">
+                <div className="reservation-header">
+                  <strong>{r.userId.email}</strong>
+                  {r.status !== 'cancelled' && (
+                    <button
+                      className="cancel-btn"
+                      onClick={() => {
+                        if (window.confirm('Are you sure you want to cancel this reservation?')) {
+                          API.put(`/admin/reservations/${r._id}/cancel`)
+                            .then(() => {
+                              setReservations(prev => prev.map(res =>
+                                res._id === r._id ? { ...res, status: 'cancelled' } : res
+                              ));
+                            })
+                            .catch(error => {
+                              alert(error.response?.data?.message || "Failed to cancel reservation");
+                            });
+                        }
+                      }}
+                    >
+                      🗑️
+                    </button>
+                  )}
+                </div>
+                <div>{r.date} | {r.timeSlot}</div>
+                <div>Guests: {r.guests}</div>
+                <div>📞 {r.mobileNumber}</div>
+                <div>Table: {r.tableId.tableNumber}</div>
+                {r.status === 'cancelled' && (
+                  <span className="badge-cancelled">Cancelled</span>
                 )}
               </div>
-              <div>{r.date} | {r.timeSlot}</div>
-              <div>Guests: {r.guests}</div>
-              <div>📞 {r.mobileNumber}</div>
-              <div>Table: {r.tableId.tableNumber}</div>
-              {r.status === 'cancelled' && (
-                <span className="badge-cancelled">Cancelled</span>
-              )}
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </>

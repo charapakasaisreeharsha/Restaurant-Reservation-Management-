@@ -369,6 +369,15 @@ body {
 }
 
 /* RESERVATIONS LIST */
+.reservations-list {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  border: 1px solid #e5e7eb;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
 .reservation-item {
   background: white;
   border-radius: 16px;
