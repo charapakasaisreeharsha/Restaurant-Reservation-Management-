@@ -104,7 +104,7 @@ The application supports **role-based authentication**, **slot-based table booki
 ```
 ###🪑 Table
 ```js
-Copy code
+
 {
   tableNumber,
   capacity
@@ -112,7 +112,7 @@ Copy code
 ```
 📋 Reservation
 ```js
-Copy code
+
 {
   userId,
   tableId,
