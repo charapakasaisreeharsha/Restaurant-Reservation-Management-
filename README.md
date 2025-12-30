@@ -101,15 +101,17 @@ The application supports **role-based authentication**, **slot-based table booki
   password,
   role: "USER" | "ADMIN"
 }
-🪑 Table
-js
+```
+###🪑 Table
+```js
 Copy code
 {
   tableNumber,
   capacity
 }
+```
 📋 Reservation
-js
+```js
 Copy code
 {
   userId,
@@ -120,3 +122,4 @@ Copy code
   mobileNumber,
   specialRequest
 }
+```
